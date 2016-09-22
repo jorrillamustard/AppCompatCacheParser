@@ -151,17 +151,17 @@ namespace AppCompatCacheParser
                     if (_fluentCommandLineParser.Object.ControlSet >= 0)
                     {
                         outFileBase =
-                            $"{appCompat.OperatingSystem}_{Path.GetFileNameWithoutExtension(_fluentCommandLineParser.Object.HiveFile)}_ControlSet00{_fluentCommandLineParser.Object.ControlSet}_AppCompatCache.tsv";
+                            $"AppCompatCache.csv";
                     }
                     else
                     {
                         outFileBase =
-                            $"{appCompat.OperatingSystem}_{Path.GetFileNameWithoutExtension(_fluentCommandLineParser.Object.HiveFile)}_AppCompatCache.tsv";
+                            $"AppCompatCache.csv";
                     }
                 }
                 else
                 {
-                    outFileBase = $"{appCompat.OperatingSystem}_{Environment.MachineName}_AppCompatCache.tsv";
+                    outFileBase = $"AppCompatCache.csv";
                 }
 
                 if (Directory.Exists(_fluentCommandLineParser.Object.SaveTo) == false)
@@ -181,7 +181,7 @@ namespace AppCompatCacheParser
                 var csv = new CsvWriter(sw);
 
                 csv.Configuration.RegisterClassMap(new CacheOutputMap(_fluentCommandLineParser.Object.DateTimeFormat));
-                csv.Configuration.Delimiter = "\t";
+                csv.Configuration.Delimiter = ",";
 
                 csv.WriteHeader<CacheEntry>();
 
